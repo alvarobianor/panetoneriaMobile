@@ -1,17 +1,14 @@
-/* eslint-disable react-native/no-inline-styles */
-import React from 'react';
-import {Text, View} from 'react-native';
+import 'react-native-gesture-handler';
+import * as React from 'react';
+import {View, Text} from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
 
-const HelloWorldApp = () => {
+export default function App() {
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}>
-      <Text>Hello, Álvaro Bianor!</Text>
-    </View>
+    <NavigationContainer>
+      <View>
+        <Text>Ola</Text>
+      </View>
+    </NavigationContainer>
   );
-};
-export default HelloWorldApp;
+}
