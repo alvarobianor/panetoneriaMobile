@@ -16,7 +16,6 @@ export const PickerMolder = styled.View`
   width: 60%;
   margin-top: 4px;
   background-color: #e07a16;
-  /* border-width: 1px; */
   border-radius: 20px;
   padding: 10px;
   text-align: center;
@@ -31,14 +30,12 @@ export const Title = styled.Text`
 `;
 
 export const Repository = styled.TouchableOpacity`
-  /* background-color: blanchedalmond; */
   background-color: #fff;
   border-radius: 20px;
   height: 150px;
   width: 100%;
   margin-bottom: 20px;
   padding: 20px;
-  /* justify-content: center; */
   align-items: center;
   flex-direction: row;
 `;
@@ -50,8 +47,6 @@ export const Card = styled.Image`
 `;
 export const CardInfo = styled.View`
   flex: 1;
-  /* background-color: coral; */
-  /* width: ; */
   height: 100%;
   margin-left: 10px;
 `;
