@@ -61,7 +61,7 @@ export const CardInfoTitle = styled.Text`
   font-size: 30px;
 `;
 
-export const CardInfoDescription = styled.Text`
+export const CardInfoBrand = styled.Text`
   margin-top: 10px;
   font-family: 'Roboto-Regular';
   font-size: 20px;

@@ -19,7 +19,7 @@ import {
   Card,
   CardInfo,
   CardInfoTitle,
-  CardInfoDescription,
+  CardInfoBrand,
 } from './styles';
 
 interface Brands {
@@ -37,7 +37,7 @@ interface Panettone {
 const Dashboard: React.FC = () => {
   const navigate = useNavigation();
 
-  const [selectedValue, setSelectedValue] = useState('garoto');
+  const [selectedValue, setSelectedValue] = useState('nenhum');
   const [listBrands, setListBrands] = useState<string[]>([]);
   const [data, setData] = useState<Panettone[]>([]);
 
@@ -55,7 +55,7 @@ const Dashboard: React.FC = () => {
         `/search?filter=${selectedValue}`,
       );
       setData(info);
-      console.log(selectedValue);
+      console.log(data);
     }
     load();
   }, [selectedValue]);
@@ -89,87 +89,21 @@ const Dashboard: React.FC = () => {
               ))}
             </PickerSelection>
           </PickerMolder>
-
-          <Repository
-            onPress={() =>
-              navigate.navigate('Details', {
-                title: 'Pantonesco',
-                brand: 'Super pantone',
-                weight: 50,
-                price: 0.5,
-              })
-            }>
-            <Card source={BackgroundRepo} />
-            <CardInfo>
-              <CardInfoTitle>Title de merda</CardInfoTitle>
-              <CardInfoDescription>
-                Outra merda de description
-              </CardInfoDescription>
-            </CardInfo>
-          </Repository>
-          <Repository onPress={() => navigate.navigate('Details')}>
-            <Card source={BackgroundRepo} />
-            <CardInfo>
-              <CardInfoTitle>Title de merda</CardInfoTitle>
-              <CardInfoDescription>
-                Outra merda de description
-              </CardInfoDescription>
-            </CardInfo>
-          </Repository>
-          <Repository onPress={() => navigate.navigate('Details')}>
-            <Card source={BackgroundRepo} />
-            <CardInfo>
-              <CardInfoTitle>Title de merda</CardInfoTitle>
-              <CardInfoDescription>
-                Outra merda de description
-              </CardInfoDescription>
-            </CardInfo>
-          </Repository>
-          <Repository onPress={() => navigate.navigate('Details')}>
-            <Card source={BackgroundRepo} />
-            <CardInfo>
-              <CardInfoTitle>Title de merda</CardInfoTitle>
-              <CardInfoDescription>
-                Outra merda de description
-              </CardInfoDescription>
-            </CardInfo>
-          </Repository>
-          <Repository onPress={() => navigate.navigate('Details')}>
-            <Card source={BackgroundRepo} />
-            <CardInfo>
-              <CardInfoTitle>Title de merda</CardInfoTitle>
-              <CardInfoDescription>
-                Outra merda de description
-              </CardInfoDescription>
-            </CardInfo>
-          </Repository>
-          <Repository onPress={() => navigate.navigate('Details')}>
-            <Card source={BackgroundRepo} />
-            <CardInfo>
-              <CardInfoTitle>Title de merda</CardInfoTitle>
-              <CardInfoDescription>
-                Outra merda de description
-              </CardInfoDescription>
-            </CardInfo>
-          </Repository>
-          <Repository onPress={() => navigate.navigate('Details')}>
-            <Card source={BackgroundRepo} />
-            <CardInfo>
-              <CardInfoTitle>Title de merda</CardInfoTitle>
-              <CardInfoDescription>
-                Outra merda de description
-              </CardInfoDescription>
-            </CardInfo>
-          </Repository>
-          <Repository onPress={() => navigate.navigate('Details')}>
-            <Card source={BackgroundRepo} />
-            <CardInfo>
-              <CardInfoTitle>Title de merda</CardInfoTitle>
-              <CardInfoDescription>
-                Outra merda de description
-              </CardInfoDescription>
-            </CardInfo>
-          </Repository>
+          {data.map((element) => (
+            <Repository
+              key={element.id}
+              onPress={() =>
+                navigate.navigate('Details', {
+                  title: element.name,
+                })
+              }>
+              <Card source={{uri: element.url_img}} />
+              <CardInfo>
+                <CardInfoTitle>{element.name}</CardInfoTitle>
+                <CardInfoBrand>{element.brand}</CardInfoBrand>
+              </CardInfo>
+            </Repository>
+          ))}
         </Container>
       </ScrollView>
     </ImageBackground>
