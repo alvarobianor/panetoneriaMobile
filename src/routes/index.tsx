@@ -11,7 +11,7 @@ const routes: React.FC = () => {
     <Stack.Navigator
       screenOptions={{
         headerShown: false,
-        cardStyle: {backgroundColor: '#c5c5c5'},
+        cardStyle: {backgroundColor: 'antiquewhite'},
       }}>
       <Stack.Screen name="Dashboard" component={Dashboard} />
       <Stack.Screen name="Details" component={Details} />
