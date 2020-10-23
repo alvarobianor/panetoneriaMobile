@@ -1,9 +1,12 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react-native/no-inline-styles */
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {ImageBackground, Text, ScrollView} from 'react-native';
 import Logo from '../../assets/background-toast.png';
 import BackgroundRepo from '../../assets/logo.png';
+
+import api from '../../service/api';
 
 import {useNavigation} from '@react-navigation/native';
 
@@ -19,10 +22,44 @@ import {
   CardInfoDescription,
 } from './styles';
 
+interface Brands {
+  brands: Array<string>;
+}
+
+interface Panettone {
+  _id: string;
+  name: string;
+  brand: string;
+  url_img: string;
+  id: string;
+}
+
 const Dashboard: React.FC = () => {
   const navigate = useNavigation();
 
-  const [selectedValue, setSelectedValue] = useState('java');
+  const [selectedValue, setSelectedValue] = useState('garoto');
+  const [listBrands, setListBrands] = useState<string[]>([]);
+  const [data, setData] = useState<Panettone[]>([]);
+
+  useEffect(() => {
+    async function load() {
+      const {data: info} = await api.get<Brands>('/brands');
+      setListBrands(info.brands);
+    }
+    load();
+  }, []);
+
+  useEffect(() => {
+    async function load() {
+      const {data: info} = await api.get<Panettone[]>(
+        `/search?filter=${selectedValue}`,
+      );
+      setData(info);
+      console.log(selectedValue);
+    }
+    load();
+  }, [selectedValue]);
+
   return (
     <ImageBackground
       source={Logo}
@@ -42,10 +79,14 @@ const Dashboard: React.FC = () => {
               onValueChange={(value, position) =>
                 setSelectedValue(String(value))
               }>
-              <PickerSelection.Item label="Java" value="java" />
-              <PickerSelection.Item label="React" value="React" />
-              <PickerSelection.Item label="React-Native" value="React-Native" />
-              <PickerSelection.Item label="Node" value="Node" />
+              <PickerSelection.Item label="Nenhum" value="nenhum" />
+              {listBrands.map((element) => (
+                <PickerSelection.Item
+                  key={element}
+                  label={element}
+                  value={element}
+                />
+              ))}
             </PickerSelection>
           </PickerMolder>
 
