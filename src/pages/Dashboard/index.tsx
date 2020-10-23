@@ -1,12 +1,21 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react-native/no-inline-styles */
 import React, {useState} from 'react';
-import {ImageBackground, Text} from 'react-native';
+import {ImageBackground, Text, ScrollView} from 'react-native';
 import Logo from '../../assets/background-toast.png';
+import BackgroundRepo from '../../assets/logo.png';
 
-import {Container, PickerI, PickerMolder} from './styles';
-
-import {PickerProps} from 'react-native';
+import {
+  Container,
+  PickerSelection,
+  PickerMolder,
+  Title,
+  Repository,
+  Card,
+  CardInfo,
+  CardInfoTitle,
+  CardInfoDescription,
+} from './styles';
 
 const Dashboard: React.FC = () => {
   const [selectedValue, setSelectedValue] = useState('java');
@@ -18,20 +27,98 @@ const Dashboard: React.FC = () => {
         height: '100%',
         position: 'relative',
       }}>
-      <Container>
-        <PickerMolder>
-          <PickerI
-            selectedValue={selectedValue}
-            onValueChange={(value, position) =>
-              setSelectedValue(String(value))
-            }>
-            <PickerI.Item label="Java" value="java" />
-            <PickerI.Item label="React" value="React" />
-            <PickerI.Item label="React-Native" value="React-Native" />
-            <PickerI.Item label="Node" value="Node" />
-          </PickerI>
-        </PickerMolder>
-      </Container>
+      <ScrollView>
+        <Container>
+          <Title>Veja aqui uma lista fantástica de Panettones</Title>
+          <Text style={{marginTop: 40}}>Filtro por marca:</Text>
+
+          <PickerMolder>
+            <PickerSelection
+              selectedValue={selectedValue}
+              onValueChange={(value, position) =>
+                setSelectedValue(String(value))
+              }>
+              <PickerSelection.Item label="Java" value="java" />
+              <PickerSelection.Item label="React" value="React" />
+              <PickerSelection.Item label="React-Native" value="React-Native" />
+              <PickerSelection.Item label="Node" value="Node" />
+            </PickerSelection>
+          </PickerMolder>
+
+          <Repository>
+            <Card source={BackgroundRepo} />
+            <CardInfo>
+              <CardInfoTitle>Title de merda</CardInfoTitle>
+              <CardInfoDescription>
+                Outra merda de description
+              </CardInfoDescription>
+            </CardInfo>
+          </Repository>
+          <Repository>
+            <Card source={BackgroundRepo} />
+            <CardInfo>
+              <CardInfoTitle>Title de merda</CardInfoTitle>
+              <CardInfoDescription>
+                Outra merda de description
+              </CardInfoDescription>
+            </CardInfo>
+          </Repository>
+          <Repository>
+            <Card source={BackgroundRepo} />
+            <CardInfo>
+              <CardInfoTitle>Title de merda</CardInfoTitle>
+              <CardInfoDescription>
+                Outra merda de description
+              </CardInfoDescription>
+            </CardInfo>
+          </Repository>
+          <Repository>
+            <Card source={BackgroundRepo} />
+            <CardInfo>
+              <CardInfoTitle>Title de merda</CardInfoTitle>
+              <CardInfoDescription>
+                Outra merda de description
+              </CardInfoDescription>
+            </CardInfo>
+          </Repository>
+          <Repository>
+            <Card source={BackgroundRepo} />
+            <CardInfo>
+              <CardInfoTitle>Title de merda</CardInfoTitle>
+              <CardInfoDescription>
+                Outra merda de description
+              </CardInfoDescription>
+            </CardInfo>
+          </Repository>
+          <Repository>
+            <Card source={BackgroundRepo} />
+            <CardInfo>
+              <CardInfoTitle>Title de merda</CardInfoTitle>
+              <CardInfoDescription>
+                Outra merda de description
+              </CardInfoDescription>
+            </CardInfo>
+          </Repository>
+          <Repository>
+            <Card source={BackgroundRepo} />
+            <CardInfo>
+              <CardInfoTitle>Title de merda</CardInfoTitle>
+              <CardInfoDescription>
+                Outra merda de description
+              </CardInfoDescription>
+            </CardInfo>
+          </Repository>
+          <Repository>
+            <Card source={BackgroundRepo} />
+            <CardInfo>
+              <CardInfoTitle>Title de merda</CardInfoTitle>
+              <CardInfoDescription>
+                Outra merda de description
+              </CardInfoDescription>
+            </CardInfo>
+          </Repository>
+        </Container>
+      </ScrollView>
     </ImageBackground>
   );
 };
