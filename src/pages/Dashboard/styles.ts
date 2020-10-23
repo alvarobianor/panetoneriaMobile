@@ -30,7 +30,7 @@ export const Title = styled.Text`
   text-align: center;
 `;
 
-export const Repository = styled.View`
+export const Repository = styled.TouchableOpacity`
   /* background-color: blanchedalmond; */
   background-color: #fff;
   border-radius: 20px;

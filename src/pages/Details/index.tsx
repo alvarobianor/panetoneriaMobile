@@ -5,6 +5,8 @@ import {ImageBackground, ScrollView} from 'react-native';
 import Logo from '../../assets/background-toast.png';
 import BackgroundAvatar from '../../assets/logo.png';
 
+import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
+
 import {
   Container,
   Header,
@@ -19,7 +21,17 @@ import {
   AboutDetail,
 } from './styles';
 
+interface Params {
+  title: string;
+  brand: string;
+  weight: number;
+  price: number;
+}
+
 const Details: React.FC = () => {
+  const {params} = useRoute<RouteProp<Record<string, Params>, string>>();
+  const {title, brand, weight, price} = params;
+
   return (
     <ImageBackground
       source={Logo}
@@ -32,22 +44,22 @@ const Details: React.FC = () => {
         <Container>
           <Header>
             <Avatar source={BackgroundAvatar} />
-            <HeaderTitle> Title foda </HeaderTitle>
+            <HeaderTitle> {title} </HeaderTitle>
           </Header>
 
           <ListMolder>
             <BlockInfo>
-              <ListTitle>Garoto</ListTitle>
+              <ListTitle>{brand}</ListTitle>
               <ListDetail>Marca</ListDetail>
             </BlockInfo>
 
             <BlockInfo>
-              <ListTitle>R$500</ListTitle>
+              <ListTitle>R${price}</ListTitle>
               <ListDetail>Preço</ListDetail>
             </BlockInfo>
 
             <BlockInfo>
-              <ListTitle>2Kg</ListTitle>
+              <ListTitle>{weight}Kg</ListTitle>
               <ListDetail>Peso</ListDetail>
             </BlockInfo>
           </ListMolder>

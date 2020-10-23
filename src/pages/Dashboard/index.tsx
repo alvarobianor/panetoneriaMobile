@@ -5,6 +5,8 @@ import {ImageBackground, Text, ScrollView} from 'react-native';
 import Logo from '../../assets/background-toast.png';
 import BackgroundRepo from '../../assets/logo.png';
 
+import {useNavigation} from '@react-navigation/native';
+
 import {
   Container,
   PickerSelection,
@@ -18,6 +20,8 @@ import {
 } from './styles';
 
 const Dashboard: React.FC = () => {
+  const navigate = useNavigation();
+
   const [selectedValue, setSelectedValue] = useState('java');
   return (
     <ImageBackground
@@ -45,7 +49,15 @@ const Dashboard: React.FC = () => {
             </PickerSelection>
           </PickerMolder>
 
-          <Repository>
+          <Repository
+            onPress={() =>
+              navigate.navigate('Details', {
+                title: 'Pantonesco',
+                brand: 'Super pantone',
+                weight: 50,
+                price: 0.5,
+              })
+            }>
             <Card source={BackgroundRepo} />
             <CardInfo>
               <CardInfoTitle>Title de merda</CardInfoTitle>
@@ -54,7 +66,7 @@ const Dashboard: React.FC = () => {
               </CardInfoDescription>
             </CardInfo>
           </Repository>
-          <Repository>
+          <Repository onPress={() => navigate.navigate('Details')}>
             <Card source={BackgroundRepo} />
             <CardInfo>
               <CardInfoTitle>Title de merda</CardInfoTitle>
@@ -63,7 +75,7 @@ const Dashboard: React.FC = () => {
               </CardInfoDescription>
             </CardInfo>
           </Repository>
-          <Repository>
+          <Repository onPress={() => navigate.navigate('Details')}>
             <Card source={BackgroundRepo} />
             <CardInfo>
               <CardInfoTitle>Title de merda</CardInfoTitle>
@@ -72,7 +84,7 @@ const Dashboard: React.FC = () => {
               </CardInfoDescription>
             </CardInfo>
           </Repository>
-          <Repository>
+          <Repository onPress={() => navigate.navigate('Details')}>
             <Card source={BackgroundRepo} />
             <CardInfo>
               <CardInfoTitle>Title de merda</CardInfoTitle>
@@ -81,7 +93,7 @@ const Dashboard: React.FC = () => {
               </CardInfoDescription>
             </CardInfo>
           </Repository>
-          <Repository>
+          <Repository onPress={() => navigate.navigate('Details')}>
             <Card source={BackgroundRepo} />
             <CardInfo>
               <CardInfoTitle>Title de merda</CardInfoTitle>
@@ -90,7 +102,7 @@ const Dashboard: React.FC = () => {
               </CardInfoDescription>
             </CardInfo>
           </Repository>
-          <Repository>
+          <Repository onPress={() => navigate.navigate('Details')}>
             <Card source={BackgroundRepo} />
             <CardInfo>
               <CardInfoTitle>Title de merda</CardInfoTitle>
@@ -99,7 +111,7 @@ const Dashboard: React.FC = () => {
               </CardInfoDescription>
             </CardInfo>
           </Repository>
-          <Repository>
+          <Repository onPress={() => navigate.navigate('Details')}>
             <Card source={BackgroundRepo} />
             <CardInfo>
               <CardInfoTitle>Title de merda</CardInfoTitle>
@@ -108,7 +120,7 @@ const Dashboard: React.FC = () => {
               </CardInfoDescription>
             </CardInfo>
           </Repository>
-          <Repository>
+          <Repository onPress={() => navigate.navigate('Details')}>
             <Card source={BackgroundRepo} />
             <CardInfo>
               <CardInfoTitle>Title de merda</CardInfoTitle>
