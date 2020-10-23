@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-native/no-inline-styles */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, {useState, useEffect} from 'react';
 import {ImageBackground, ScrollView} from 'react-native';
 import Logo from '../../assets/background-toast.png';
@@ -59,30 +58,30 @@ const Details: React.FC = () => {
       <ScrollView>
         <Container>
           <Header>
-            <Avatar source={{uri: panettone?.url_img}} />
+            <Avatar source={{uri: panettone?.url_img} || BackgroundAvatar} />
             <HeaderTitle> {name} </HeaderTitle>
           </Header>
 
           <ListMolder>
             <BlockInfo>
-              <ListTitle>{panettone?.brand}</ListTitle>
+              <ListTitle>{panettone?.brand || 'Mock'}</ListTitle>
               <ListDetail>Marca</ListDetail>
             </BlockInfo>
 
             <BlockInfo>
-              <ListTitle>R${panettone?.price}</ListTitle>
+              <ListTitle>R${panettone?.price || 'Mock'}</ListTitle>
               <ListDetail>Preço</ListDetail>
             </BlockInfo>
 
             <BlockInfo>
-              <ListTitle>{panettone?.weight}Kg</ListTitle>
+              <ListTitle>{panettone?.weight || 'Mock'}Kg</ListTitle>
               <ListDetail>Peso</ListDetail>
             </BlockInfo>
           </ListMolder>
 
           <About>
             <AboutTitle>Uma breve história sobre esse Panettone</AboutTitle>
-            <AboutDetail>{panettone?.about}</AboutDetail>
+            <AboutDetail>{panettone?.about || 'Mock'}</AboutDetail>
           </About>
         </Container>
       </ScrollView>
