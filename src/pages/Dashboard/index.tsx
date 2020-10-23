@@ -4,7 +4,6 @@
 import React, {useState, useEffect} from 'react';
 import {ImageBackground, Text, ScrollView} from 'react-native';
 import Logo from '../../assets/background-toast.png';
-import BackgroundRepo from '../../assets/logo.png';
 
 import api from '../../service/api';
 
@@ -94,7 +93,7 @@ const Dashboard: React.FC = () => {
               key={element.id}
               onPress={() =>
                 navigate.navigate('Details', {
-                  title: element.name,
+                  name: element.name,
                 })
               }>
               <Card source={{uri: element.url_img}} />

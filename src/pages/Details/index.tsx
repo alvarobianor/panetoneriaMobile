@@ -1,11 +1,13 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {ImageBackground, ScrollView} from 'react-native';
 import Logo from '../../assets/background-toast.png';
 import BackgroundAvatar from '../../assets/logo.png';
+import api from '../../service/api';
 
-import {RouteProp, useNavigation, useRoute} from '@react-navigation/native';
+import {RouteProp, useRoute} from '@react-navigation/native';
 
 import {
   Container,
@@ -22,15 +24,29 @@ import {
 } from './styles';
 
 interface Params {
-  title: string;
+  name: string;
+}
+
+interface Info {
   brand: string;
   weight: number;
   price: number;
+  about: string;
+  url_img: string;
 }
-
 const Details: React.FC = () => {
   const {params} = useRoute<RouteProp<Record<string, Params>, string>>();
-  const {title, brand, weight, price} = params;
+  const {name} = params;
+
+  const [panettone, setPanettone] = useState<Info>();
+
+  useEffect(() => {
+    async function load() {
+      const {data: info} = await api.get<Info>(`/panettone/${name}`);
+      setPanettone(info);
+    }
+    load();
+  }, []);
 
   return (
     <ImageBackground
@@ -43,41 +59,30 @@ const Details: React.FC = () => {
       <ScrollView>
         <Container>
           <Header>
-            <Avatar source={BackgroundAvatar} />
-            <HeaderTitle> {title} </HeaderTitle>
+            <Avatar source={{uri: panettone?.url_img}} />
+            <HeaderTitle> {name} </HeaderTitle>
           </Header>
 
           <ListMolder>
             <BlockInfo>
-              <ListTitle>{brand}</ListTitle>
+              <ListTitle>{panettone?.brand}</ListTitle>
               <ListDetail>Marca</ListDetail>
             </BlockInfo>
 
             <BlockInfo>
-              <ListTitle>R${price}</ListTitle>
+              <ListTitle>R${panettone?.price}</ListTitle>
               <ListDetail>Preço</ListDetail>
             </BlockInfo>
 
             <BlockInfo>
-              <ListTitle>{weight}Kg</ListTitle>
+              <ListTitle>{panettone?.weight}Kg</ListTitle>
               <ListDetail>Peso</ListDetail>
             </BlockInfo>
           </ListMolder>
 
           <About>
-            <AboutTitle>Olá fion</AboutTitle>
-            <AboutDetail>
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book. It has
-              survived not only five centuries, but also the leap into
-              electronic typesetting, remaining essentially unchanged. It was
-              popularised in the 1960s with the release of Letraset sheets
-              containing Lorem Ipsum passages, and more recently with desktop
-              publishing software like Aldus PageMaker including versions of
-              Lorem Ipsum.
-            </AboutDetail>
+            <AboutTitle>Uma breve história sobre esse Panettone</AboutTitle>
+            <AboutDetail>{panettone?.about}</AboutDetail>
           </About>
         </Container>
       </ScrollView>
