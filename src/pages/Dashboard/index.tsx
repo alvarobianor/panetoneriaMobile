@@ -54,7 +54,6 @@ const Dashboard: React.FC = () => {
         `/search?filter=${selectedValue}`,
       );
       setData(info);
-      console.log(data);
     }
     load();
   }, [selectedValue]);
